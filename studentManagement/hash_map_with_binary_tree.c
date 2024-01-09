@@ -64,7 +64,7 @@ Node* insert(Node* r, char* _name, char* _email){
 
 Node* find (Node* r, char* _name){
     if(r == NULL) return NULL;
-    int c = strcmp(r->name, _name);
+    int c = strcmp(_name, r->name);
     if(c == 0) return r;
     if(c < 0) return find(r->rightChild, _name);
     return find(r->leftChild, _name);
@@ -115,7 +115,7 @@ void load(char* filename){
     for(int i = 0; i < M; i++) root[i] = NULL;
     while(!feof(f)){
         char _name[256], _email[256];
-        fscanf(f, "%s%s", _name, _email);
+        fscanf(f, "%s %s", _name, _email);
         int idx= hash(_name);
         root[idx] = insert(root[idx], _name, _email);
     }
@@ -174,9 +174,7 @@ void processRemove(){
 
 void processFind() {
     char name[256];
-    //printf("Enter the name of the student: ");
-    fgets(name, 256, stdin); // read the name from the user
-    name[strcspn(name, "\n")] = 0; // remove the newline character
+   scanf("%s", name);
 
     int index = hash(name); // calculate the hash value of the name
     Node* student = find(root[index], name); // find the student's record
