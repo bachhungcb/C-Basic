@@ -35,7 +35,7 @@ Node* root[M];
 //hash fuction
 int hash(char* s){
     int rs = 0;     int n = strlen(s);
-    for(int i =0; i < n; i++)       rs = (rs + 2 * 2)%M;
+    for(int i =0; i < n; i++)       rs = (rs * 255 + s[i])%M;
     return rs;
 }
 
@@ -50,7 +50,7 @@ Node* insert(Node* r, char* _name, char* _email){
     if(r == NULL) return makeNode(_name, _email);
     int c = strcmp(r->name, _name);
     if(c == 0){
-        printf("Da co hoc sinh %s, khong thuc hien chen", _name); return r;
+        printf("Da co hoc sinh %s, khong thuc hien chen\n", _name); return r;
     }
 
     else if(c < 0){

@@ -43,4 +43,40 @@ void genData(char* filename, int n, int Q){
     srand(time(NULL));
     FILE* f = fopen(filename, "w");
     fprint(f,"%d %d\n", n,Q); initSet(n);
+    for(int i = 1; i <= n; i++){
+        int x = selectAndRemone();
+        fprintf(f,"%d", x);
+    }
+    fclose(f);
+}
+
+//end of data input generation
+
+void input(char* filename){
+    FILE* f = fopen(filename, "r");
+    fscanf(f, "%d %d", &n, &Q);
+    for(int i = 1; i <= n; i++)     fscanf(f,"%d", &a[i]);
+    fclose(f);
+}
+
+void bruteForceSolve(){
+    int cnt = 0;
+    for(int i = 1;i < n; i++){
+        for(int j = i+1; j <=n; j++){
+            if(a[i] + a[j] == Q)
+                cnt++;
+        }
+    }
+    printf("Result = %d\n", cnt);
+}
+
+void swap(int i, int j){
+    int temp = a[j];
+    a[j] = a[i];
+    a[i] = temp;
+}
+
+void heapify(int i, int n){
+    int L = i*2;
+    int R
 }
