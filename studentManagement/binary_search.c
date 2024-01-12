@@ -78,5 +78,5 @@ void swap(int i, int j){
 
 void heapify(int i, int n){
     int L = i*2;
-    int R
+    int R;
 }
